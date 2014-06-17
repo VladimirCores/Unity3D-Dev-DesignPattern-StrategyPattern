@@ -1,0 +1,46 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Unit : MonoBehaviour {
+    
+    public string Name = "unit";
+
+    private bool _selected = false;
+    private Color _color = Color.black;
+    private int _zindex = 0;
+    
+    virtual public void move(Vector2 position)
+    {
+        float distance = Vector2.Distance(transform.position, position);
+        this.transform.position = new Vector3(position.x, position.y, _zindex);
+        Debug.Log(string.Format("Unit : {0} > is moving", Name));
+    }
+
+    public bool isSelected
+    {
+        set { 
+            _selected = value;
+            setColor(value ? Color.white : _color);
+            setZIndex(value ? -1 : 0);
+        }
+        get { return _selected; }
+    }
+
+    private void setColor(Color value) {
+        if (this.renderer) {
+            if (_color == Color.black)
+            {
+                _color = this.renderer.material.color;
+            }
+            this.renderer.material.color = value;
+        }
+    }
+
+    private void setZIndex(int value)
+    {
+        _zindex = value;
+        Vector2 tmpPos = this.transform.position;
+        this.transform.position = new Vector3(tmpPos.x, tmpPos.y, _zindex);
+    }
+
+}
