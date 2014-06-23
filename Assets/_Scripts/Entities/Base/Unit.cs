@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Unit : MonoBehaviour {
+public abstract class Unit : MonoBehaviour {
     
     public string Name = "unit";
 
