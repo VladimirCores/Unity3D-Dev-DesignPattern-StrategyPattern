@@ -5,6 +5,8 @@ public abstract class Unit : MonoBehaviour {
     
     public string Name = "unit";
 
+    private IMovable _moveAlgorithm = new NullMoveAlgorithm();
+
     private bool _selected = false;
     private Color _color = Color.black;
     private int _zindex = 0;
@@ -12,8 +14,9 @@ public abstract class Unit : MonoBehaviour {
     virtual public void move(Vector2 position)
     {
         float distance = Vector2.Distance(transform.position, position);
-        this.transform.position = new Vector3(position.x, position.y, _zindex);
-        Debug.Log(string.Format("Unit : {0} > is moving", Name));
+        //this.transform.position = new Vector3(position.x, position.y, _zindex);
+        //Debug.Log(string.Format("Unit : {0} > is moving", Name));
+        _moveAlgorithm.move(this.transform, position);
     }
 
     public bool isSelected
@@ -24,6 +27,11 @@ public abstract class Unit : MonoBehaviour {
             setZIndex(value ? -1 : 0);
         }
         get { return _selected; }
+    }
+
+    public void SetMoveAlgorithm(IMovable value)
+    {
+        _moveAlgorithm = value;
     }
 
     private void setColor(Color value) {
