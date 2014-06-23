@@ -4,6 +4,6 @@ using System.Collections;
 public class Marine : Unit {
 	void Start () {
         Name = "Marine";
-        SetMoveAlgorithm(new TerranInfantryMoveAlgorithm());
+        SetMoveAlgorithm(typeof(TerranInfantryMoveAlgorithm));
 	}
 }

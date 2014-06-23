@@ -4,7 +4,7 @@ using System.Collections;
 public class Battlecruiser : Unit {
 	void Start () {
         Name = "Battlecruiser";
-        SetMoveAlgorithm(new TerranAviationMoveAlgorithm());
+        SetMoveAlgorithm(typeof(TerranAviationMoveAlgorithm));
 	}
 
     //override public void move(Vector2 position)

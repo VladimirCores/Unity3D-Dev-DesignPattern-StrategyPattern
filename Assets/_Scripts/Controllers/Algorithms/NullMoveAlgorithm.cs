@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NullMoveAlgorithm : IMovable {
+public class NullMoveAlgorithm : MonoBehaviour, IMovable
+{
 
     public NullMoveAlgorithm()
     {
 
     }
 
-    public void move(Transform target, Vector2 position)
+    public void move(Vector2 position)
     {
         
     }

@@ -18,7 +18,7 @@ public class UnitsFactory : MonoBehaviour {
 
     private Dictionary<string, GameObject> _terranUnits = new Dictionary<string, GameObject>();
 
-    void Start()
+    void Awake()
     {
         TerranUnit unit;
         String unitName;

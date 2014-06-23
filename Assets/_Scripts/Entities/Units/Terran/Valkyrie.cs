@@ -4,7 +4,7 @@ using System.Collections;
 public class Valkyrie : Unit {
 	void Start () {
         Name = "Valkyrie";
-        SetMoveAlgorithm(new TerranAviationMoveAlgorithm());
+        SetMoveAlgorithm(typeof(TerranAviationMoveAlgorithm));
     }
 
     //override public void move(Vector2 position)

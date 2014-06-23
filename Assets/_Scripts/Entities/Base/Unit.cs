@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public abstract class Unit : MonoBehaviour {
     
@@ -16,7 +17,7 @@ public abstract class Unit : MonoBehaviour {
         float distance = Vector2.Distance(transform.position, position);
         //this.transform.position = new Vector3(position.x, position.y, _zindex);
         //Debug.Log(string.Format("Unit : {0} > is moving", Name));
-        _moveAlgorithm.move(this.transform, position);
+        _moveAlgorithm.move(position);
     }
 
     public bool isSelected
@@ -29,9 +30,9 @@ public abstract class Unit : MonoBehaviour {
         get { return _selected; }
     }
 
-    public void SetMoveAlgorithm(IMovable value)
+    public void SetMoveAlgorithm(Type value)
     {
-        _moveAlgorithm = value;
+        _moveAlgorithm = (IMovable)this.gameObject.AddComponent(value);
     }
 
     private void setColor(Color value) {
