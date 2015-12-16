@@ -9,14 +9,11 @@ public class UnitController : MonoBehaviour {
     private Touch _touch;
     private Vector2 _position;    
 
-	void Start () {
-	    
-	}
-	
     void Update () {
         if (Input.touchCount > 0) {
             AnalizeTouchOnUnit();
-        } else if(Input.GetMouseButtonUp(0)) {
+        }
+        else if(Input.GetMouseButtonUp(0)) {
             AnalizeMouseOnUnit();
             AnalizeMoveUnitToPosition();
         }
@@ -50,7 +47,7 @@ public class UnitController : MonoBehaviour {
             unit.isSelected = false;
             unit = collider.transform.GetComponent<Unit>();
             unit.isSelected = true;
-            _position = Vector2.zero;
+            _position = Vector3.zero;
         }
     }
 }

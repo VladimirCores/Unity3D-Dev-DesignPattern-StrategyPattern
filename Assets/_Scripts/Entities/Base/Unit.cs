@@ -11,13 +11,15 @@ public abstract class Unit : MonoBehaviour {
     private bool _selected = false;
     private Color _color = Color.black;
     private int _zindex = 0;
-    
+    private Material _material;
+
     virtual public void move(Vector2 position)
     {
-        float distance = Vector2.Distance(transform.position, position);
-        //this.transform.position = new Vector3(position.x, position.y, _zindex);
-        //Debug.Log(string.Format("Unit : {0} > is moving", Name));
         _moveAlgorithm.move(position);
+    }
+
+    void Awake() {
+        _material = this.GetComponent<Renderer>().material;
     }
 
     public bool isSelected
@@ -36,12 +38,12 @@ public abstract class Unit : MonoBehaviour {
     }
 
     private void setColor(Color value) {
-        if (this.renderer) {
+        if (_material) {
             if (_color == Color.black)
             {
-                _color = this.renderer.material.color;
+                _color = _material.color;
             }
-            this.renderer.material.color = value;
+            _material.color = value;
         }
     }
 
