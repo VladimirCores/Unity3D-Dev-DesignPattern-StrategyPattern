@@ -13,8 +13,5 @@ public class Main : MonoBehaviour {
         var valkyrie = (Valkyrie)Factory.createTerranUnit(typeof(Valkyrie));
     }
 	
-	// Update is called once per frame
-	void Update () {
 	
-	}
 }

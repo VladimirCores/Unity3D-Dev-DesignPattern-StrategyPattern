@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class NullMoveAlgorithm : MonoBehaviour, IMovable
 {
@@ -13,4 +14,11 @@ public class NullMoveAlgorithm : MonoBehaviour, IMovable
     {
         
     }
+
+    public void changeSpeed(float value)
+    {
+
+    }
+
+    
 }

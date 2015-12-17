@@ -17,6 +17,14 @@ public class UnitController : MonoBehaviour {
             AnalizeMouseOnUnit();
             AnalizeMoveUnitToPosition();
         }
+
+        if(unit) 
+        {
+            if(Input.GetKeyUp(KeyCode.Keypad1))
+            unit.SetSpeed(10f);
+            else if(Input.GetKeyUp(KeyCode.Keypad2))
+            unit.SetSpeed(20f);
+        }
 	}
 
     private void AnalizeMoveUnitToPosition()

@@ -37,6 +37,11 @@ public abstract class Unit : MonoBehaviour {
         _moveAlgorithm = (IMovable)this.gameObject.AddComponent(value);
     }
 
+    public void SetSpeed(float value)
+    {
+        _moveAlgorithm.changeSpeed(value);
+    }
+
     private void setColor(Color value) {
         if (_material) {
             if (_color == Color.black)

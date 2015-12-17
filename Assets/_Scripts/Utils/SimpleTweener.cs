@@ -49,19 +49,21 @@ public class SimpleTweener
         StartValue = startValue;
         EndValue = endValue;
         Ease = ease;
+        Delay = delay;
 
         if (float.IsNaN(time) || time <= 0)
         {
             Time = 0;
-        } else
+        }
+        else
         {
             Time = time;
             invTime = 1/time;
             CurrentTime = -delay;
             CurrentValue = startValue;
-
-            setEasingFunction();
         }
+
+        setEasingFunction();
     }
 
     private float invTime;
@@ -71,9 +73,22 @@ public class SimpleTweener
     public EaseType Ease { get; private set; }
     public float StartValue { get; private set; }
     public float EndValue { get; private set; }
+    public float Delay { get; private set; }
 
     public float CurrentValue { get; private set; }
     public float CurrentTime { get; private set; }
+
+    public void Reset()
+    {
+        CurrentTime = -Delay;
+        CurrentValue = StartValue;
+    }
+
+    public void NewTime(float value)
+    {
+        Time = value;
+        invTime = 1/value;
+    }
 
     public bool UpdateTime(float deltaTime)
     {
