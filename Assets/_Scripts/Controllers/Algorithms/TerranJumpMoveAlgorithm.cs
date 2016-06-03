@@ -76,6 +76,11 @@ class TerranJumMoveAlgorithm : MonoBehaviour, IMovable
         {
             MoveToDestination();
         }
+        else
+        {
+            Camera camera = Camera.main;
+            move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));
+        }
     }
 
     private void MoveToDestination()

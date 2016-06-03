@@ -10,7 +10,7 @@ public class TerranInfantryMoveAlgorithm : MonoBehaviour, IMovable
 
     public float _speed = 10.0f;
 
-    public bool isTweenFinished = false;
+    public bool isTweenFinished = true;
 
     private float _currentTweenValue = 0f;
     private float _moveTime = 0f;
@@ -47,6 +47,11 @@ public class TerranInfantryMoveAlgorithm : MonoBehaviour, IMovable
             isTweenFinished = _tweener.UpdateTime(Time.fixedDeltaTime, ref _currentTweenValue);
             _positionTarget = Vector2.LerpUnclamped(_positionCurrent, _moveTo, _currentTweenValue);
             transform.position = _positionTarget;
+            if(isTweenFinished)
+            {
+                Camera camera = Camera.main;
+                move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));
+            }
         }
     }
 

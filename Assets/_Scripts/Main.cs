@@ -12,8 +12,5 @@ public class Main : MonoBehaviour {
         var goliath     = (Goliath)Factory      .createTerranUnit(typeof(Goliath));
         var valkyrie    = (Valkyrie)Factory     .createTerranUnit(typeof(Valkyrie));
         var medik       = (Medik)Factory        .createTerranUnit(typeof(Medik));
-
     }
-
-
 }
