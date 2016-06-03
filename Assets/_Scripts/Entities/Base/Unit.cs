@@ -8,10 +8,10 @@ public abstract class Unit : MonoBehaviour {
 
     private IMovable _moveAlgorithm = new NullMoveAlgorithm();
 
-    private bool _selected = false;
-    private Color _color = Color.black;
-    private int _zindex = 0;
-    private Material _material;
+    private bool        _selected   = false;
+    private Color       _color      = Color.black;
+    private int         _zindex     = 0;
+    private Material    _material;
 
     virtual public void move(Vector2 position)
     {

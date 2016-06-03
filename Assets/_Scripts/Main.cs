@@ -7,11 +7,13 @@ public class Main : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        var marine = (Marine)Factory.createTerranUnit(typeof(Marine));
-        var battlecruiser = (Battlecruiser)Factory.createTerranUnit(typeof(Battlecruiser));
-        var goliath = (Goliath)Factory.createTerranUnit(typeof(Goliath));
-        var valkyrie = (Valkyrie)Factory.createTerranUnit(typeof(Valkyrie));
+        var marine      = (Marine)Factory       .createTerranUnit(typeof(Marine));
+        var battlecr    = (Battlecruiser)Factory.createTerranUnit(typeof(Battlecruiser));
+        var goliath     = (Goliath)Factory      .createTerranUnit(typeof(Goliath));
+        var valkyrie    = (Valkyrie)Factory     .createTerranUnit(typeof(Valkyrie));
+        var medik       = (Medik)Factory        .createTerranUnit(typeof(Medik));
+
     }
-	
-	
+
+
 }

@@ -10,7 +10,8 @@ public class UnitsFactory : MonoBehaviour {
         Marine,
         Goliath,
         Valkyrie,
-        Battlecruiser
+        Battlecruiser,
+        Medik
     }
 
     public Transform UnitsContainer;

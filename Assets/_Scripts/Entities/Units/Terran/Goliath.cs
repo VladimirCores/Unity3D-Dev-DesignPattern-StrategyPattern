@@ -5,6 +5,6 @@ public class Goliath : Unit {
 
 	void Start () {
         Name = "Goliath";
-        SetMoveAlgorithm(typeof(TerranInfantryMoveAlgorithm));
+        SetMoveAlgorithm(typeof(TerranJumMoveAlgorithm));
 	}
 }
