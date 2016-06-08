@@ -50,7 +50,7 @@ public class UnitController : MonoBehaviour {
     {
         _position = Camera.main.ScreenToWorldPoint(position);
         Collider2D collider = Physics2D.OverlapPoint(_position);
-        if (collider)
+        if (collider && collider.transform.GetComponent<Unit>())
         {
             unit.isSelected = false;
             unit = collider.transform.GetComponent<Unit>();

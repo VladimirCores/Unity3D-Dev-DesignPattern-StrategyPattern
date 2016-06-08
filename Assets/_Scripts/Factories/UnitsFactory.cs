@@ -5,6 +5,15 @@ using System.Collections.Generic;
 
 public class UnitsFactory : MonoBehaviour {
 
+    [Serializable]
+    public class TerranUnit
+    {
+        [HideInInspector]
+        public String name;
+        public TerranTypes type;
+        public GameObject gameobject;
+    }
+
     public enum TerranTypes
     {
         Marine,
@@ -39,12 +48,5 @@ public class UnitsFactory : MonoBehaviour {
         return (MonoBehaviour)result.GetComponent(type);
     }
     
-    [Serializable]
-    public class TerranUnit 
-    {
-        [HideInInspector]
-        public String name;
-        public TerranTypes type;
-        public GameObject gameobject;
-    }
+    
 }

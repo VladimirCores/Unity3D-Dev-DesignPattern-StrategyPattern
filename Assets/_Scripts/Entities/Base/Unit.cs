@@ -20,6 +20,13 @@ public abstract class Unit : MonoBehaviour {
 
     void Awake() {
         _material = this.GetComponent<Renderer>().material;
+        Camera camera = Camera.main;
+        this.transform.position = new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
     }
 
     public bool isSelected

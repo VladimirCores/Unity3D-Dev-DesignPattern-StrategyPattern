@@ -71,6 +71,7 @@
     <Compile Include="Assets\_Scripts\Controllers\UnitController.cs" />
     <Compile Include="Assets\_Scripts\Entities\Base\Unit.cs" />
     <Compile Include="Assets\_Scripts\Entities\Base\UnitTween.cs" />
+    <Compile Include="Assets\_Scripts\Entities\Obstacles\CircleObstacle.cs" />
     <Compile Include="Assets\_Scripts\Entities\Units\NullUnit.cs" />
     <Compile Include="Assets\_Scripts\Entities\Units\Terran\Battlecruiser.cs" />
     <Compile Include="Assets\_Scripts\Entities\Units\Terran\Goliath.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\_Scripts\Entities\Units\Terran\Medik.cs" />
     <Compile Include="Assets\_Scripts\Entities\Units\Terran\Valkyrie.cs" />
     <Compile Include="Assets\_Scripts\ExampleInheritance.cs" />
+    <Compile Include="Assets\_Scripts\Factories\ObstaclesFactory.cs" />
     <Compile Include="Assets\_Scripts\Factories\UnitsFactory.cs" />
     <Compile Include="Assets\_Scripts\Interfaces\IMovable.cs" />
     <Compile Include="Assets\_Scripts\Main.cs" />

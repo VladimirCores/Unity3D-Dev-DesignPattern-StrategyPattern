@@ -49,8 +49,8 @@ public class TerranInfantryMoveAlgorithm : MonoBehaviour, IMovable
             transform.position = _positionTarget;
             if(isTweenFinished)
             {
-                Camera camera = Camera.main;
-                move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));
+                //Camera camera = Camera.main;
+                //move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));
             }
         }
     }
