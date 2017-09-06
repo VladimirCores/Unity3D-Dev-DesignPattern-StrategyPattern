@@ -9,11 +9,11 @@ public class UnitsFactory : MonoBehaviour
     {
         [HideInInspector]
         public String name;
-        public TerranTypes type;
+        public TerranUnitTypes type;
         public GameObject gameObject;
     }
 
-    public enum TerranTypes
+    public enum TerranUnitTypes
     {
         Marine,
         Goliath,
@@ -25,33 +25,33 @@ public class UnitsFactory : MonoBehaviour
     public Transform UnitsContainer;
     public TerranUnit[] Terrans;
 
-    private Dictionary<string, GameObject> _terranUnits = new Dictionary<string, GameObject>();
+    private Dictionary<TerranUnitTypes, GameObject> _terranUnits = new Dictionary<TerranUnitTypes, GameObject>();
 
     void Awake()
     {
         TerranUnit unit;
-        String unitName;
+        TerranUnitTypes unitType;
         for (int i = 0; i < Terrans.Length; i++)
         {
             unit = Terrans[i];
             if(unit != null && unit.gameObject != null)
             {
-                unitName = unit.type.ToString();
-                _terranUnits.Add(unitName, unit.gameObject);
+                unitType = unit.type;
+                _terranUnits.Add(unitType, unit.gameObject);
             }
         }
     }
 
-    public bool isUnitRegistered(string type)
+    public bool isUnitRegistered(TerranUnitTypes type)
     {
         return _terranUnits.ContainsKey(type);
     }
 
-    public MonoBehaviour createTerranUnit(string type)
+    public MonoBehaviour createTerranUnit(TerranUnitTypes type)
     {
         GameObject result = (GameObject)Instantiate(_terranUnits[type]);
         result.transform.parent = UnitsContainer;
-        return (MonoBehaviour)result.GetComponent(type);
+        return (MonoBehaviour)result.GetComponent(type.ToString());
     }
     
     

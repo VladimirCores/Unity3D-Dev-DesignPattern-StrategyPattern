@@ -4,7 +4,7 @@ using System.Collections;
 public class Valkyrie : Unit {
 	void Start () {
         Name = "Valkyrie";
-        parameters.moveAlgorithm = Unit.MoveAlgorithms.Null;
+        parameters.moveAlgorithm = Unit.MoveAlgorithm.Null;
         SetMoveAlgorithm(typeof(NullMoveAlgorithm));
     }
 

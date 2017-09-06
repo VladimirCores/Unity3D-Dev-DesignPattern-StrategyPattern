@@ -4,7 +4,7 @@ using System.Collections;
 public class Battlecruiser : Unit {
 	void Start () {
         Name = "Battlecruiser";
-        parameters.moveAlgorithm = Unit.MoveAlgorithms.Aviation;
+        parameters.moveAlgorithm = Unit.MoveAlgorithm.Aviation;
         SetMoveAlgorithm(typeof(TerranAviationMoveAlgorithm));
 	}
 

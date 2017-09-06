@@ -7,7 +7,7 @@
     [CustomEditor(typeof(Unit), true)]
     public class ChangeUditorMoveAlgorithm : Editor
     {
-        Unit.MoveAlgorithms moveAlgorithm;
+        Unit.MoveAlgorithm moveAlgorithm;
         SerializedProperty parametersProp;
         SerializedProperty moveAlgorithmProp;
 
@@ -22,31 +22,10 @@
             DrawDefaultInspector();
             serializedObject.Update();
 
-            moveAlgorithm = (Unit.MoveAlgorithms)moveAlgorithmProp.enumValueIndex;
+            moveAlgorithm = (Unit.MoveAlgorithm)moveAlgorithmProp.enumValueIndex;
 
             Unit unitScript = (Unit)target;
-            
-            switch (moveAlgorithm)
-            {
-                case Unit.MoveAlgorithms.Null:
-                    unitScript.SetMoveAlgorithm(typeof(NullMoveAlgorithm));
-                    break;
-                case Unit.MoveAlgorithms.Aviation:
-                    unitScript.SetMoveAlgorithm(typeof(TerranAviationMoveAlgorithm));
-                    break;
-                case Unit.MoveAlgorithms.Jump:
-                    unitScript.SetMoveAlgorithm(typeof(TerranJumpMoveAlgorithm));
-                    break;
-                case Unit.MoveAlgorithms.Infantry:
-                    unitScript.SetMoveAlgorithm(typeof(TerranInfantryMoveAlgorithm));
-                    break;
-                case Unit.MoveAlgorithms.Wiggle:
-                    unitScript.SetMoveAlgorithm(typeof(TerranWiggleMoveAlgorithm));
-                    break;
-
-            }
-
-            //serializedObject.ApplyModifiedProperties();
+            unitScript.SetMoveAlgorithm(Unit.getTypeForMoveAlgorithm(moveAlgorithm));
         }
     }
 }

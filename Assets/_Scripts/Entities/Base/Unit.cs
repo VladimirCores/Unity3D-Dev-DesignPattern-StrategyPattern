@@ -5,16 +5,35 @@ using System;
 
 public abstract class Unit : MonoBehaviour
 {
+    static public Type getTypeForMoveAlgorithm(MoveAlgorithm input)
+    {
+        switch (input)
+        {
+            default:
+            case MoveAlgorithm.Null:
+                return typeof(NullMoveAlgorithm);
+            case Unit.MoveAlgorithm.Aviation:
+                return typeof(TerranAviationMoveAlgorithm);
+            case Unit.MoveAlgorithm.Jump:
+                return typeof(TerranJumpMoveAlgorithm);
+            case Unit.MoveAlgorithm.Infantry:
+                return typeof(TerranInfantryMoveAlgorithm);
+            case Unit.MoveAlgorithm.Wiggle:
+                return typeof(TerranWiggleMoveAlgorithm);
+        }
+    }
+
+
     [Serializable]
     public class UnitParams
     {
-        public MoveAlgorithms moveAlgorithm;
+        public MoveAlgorithm moveAlgorithm = MoveAlgorithm.Null;
     }
 
     public UnitParams parameters;
     public string Name = "unit";
 
-    public enum MoveAlgorithms {
+    public enum MoveAlgorithm {
         Null,
         Aviation,
         Infantry,
@@ -22,7 +41,7 @@ public abstract class Unit : MonoBehaviour
         Wiggle
     };
 
-    private IMovable _moveAlgorithm = new NullMoveAlgorithm();
+    private IMovable _moveAlgorithm;
 
     private bool        _selected   = false;
     private Color       _color      = Color.black;
@@ -34,7 +53,9 @@ public abstract class Unit : MonoBehaviour
         _moveAlgorithm.move(position);
     }
 
-    void Awake() {
+    void Awake()
+    {
+        SetMoveAlgorithm(getTypeForMoveAlgorithm(parameters.moveAlgorithm));
         _material = this.GetComponent<Renderer>().material;
         Camera camera = Camera.main;
         this.transform.position = new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2);

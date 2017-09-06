@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Main : MonoBehaviour {
     
@@ -11,19 +12,17 @@ public class Main : MonoBehaviour {
     {
         ArrayList unitsToCreate = new ArrayList()
         {
-            typeof(Marine).ToString(),
-            typeof(Battlecruiser).ToString(),
-            typeof(Goliath).ToString(),
-            typeof(Valkyrie).ToString(),
-            typeof(Medik).ToString()
+            UnitsFactory.TerranUnitTypes.Marine,
+            UnitsFactory.TerranUnitTypes.Battlecruiser,
+            UnitsFactory.TerranUnitTypes.Goliath,
+            UnitsFactory.TerranUnitTypes.Medik,
+            UnitsFactory.TerranUnitTypes.Valkyrie
         };
 
-        foreach (string unitType in unitsToCreate)
+        foreach (UnitsFactory.TerranUnitTypes unitType in unitsToCreate)
         {
             if (UnitsFactory.isUnitRegistered(unitType))
-            {
                 UnitsFactory.createTerranUnit(unitType);
-            }
         }
         
         var obst = (CircleObstacle) ObstaclesFactory.createObstacle(typeof(CircleObstacle));
