@@ -4,7 +4,8 @@ using System.Collections;
 public class Valkyrie : Unit {
 	void Start () {
         Name = "Valkyrie";
-        SetMoveAlgorithm(typeof(TerranAviationMoveAlgorithm));
+        parameters.moveAlgorithm = Unit.MoveAlgorithms.Null;
+        SetMoveAlgorithm(typeof(NullMoveAlgorithm));
     }
 
     //override public void move(Vector2 position)

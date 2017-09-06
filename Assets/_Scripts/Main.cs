@@ -7,13 +7,25 @@ public class Main : MonoBehaviour {
     public ObstaclesFactory ObstaclesFactory;
 
     // Use this for initialization
-    void Start () {
-        //var marine      = (Marine)UnitsFactory       .createTerranUnit(typeof(Marine));
-        //var battlecr    = (Battlecruiser)UnitsFactory.createTerranUnit(typeof(Battlecruiser));
-        //var goliath     = (Goliath)UnitsFactory      .createTerranUnit(typeof(Goliath));
-        //var valkyrie    = (Valkyrie)UnitsFactory     .createTerranUnit(typeof(Valkyrie));
-        var medik       = (Medik)UnitsFactory        .createTerranUnit(typeof(Medik));
+    void Start ()
+    {
+        ArrayList unitsToCreate = new ArrayList()
+        {
+            typeof(Marine).ToString(),
+            typeof(Battlecruiser).ToString(),
+            typeof(Goliath).ToString(),
+            typeof(Valkyrie).ToString(),
+            typeof(Medik).ToString()
+        };
 
+        foreach (string unitType in unitsToCreate)
+        {
+            if (UnitsFactory.isUnitRegistered(unitType))
+            {
+                UnitsFactory.createTerranUnit(unitType);
+            }
+        }
+        
         var obst = (CircleObstacle) ObstaclesFactory.createObstacle(typeof(CircleObstacle));
     }
 }

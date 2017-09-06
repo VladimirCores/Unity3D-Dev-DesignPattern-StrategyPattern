@@ -2,8 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-class TerranJumMoveAlgorithm : MonoBehaviour, IMovable
+public class TerranJumpMoveAlgorithm : MonoBehaviour, IMovable
 {
+    public bool continiousJumps = false;
+
     private SimpleTweener _tweenerJumpOut = new SimpleTweener(1, 0, 1, SimpleTweener.EaseType.easeInBounce);
     private SimpleTweener _tweenerJumpIn = new SimpleTweener(0, 1, 1, SimpleTweener.EaseType.easeInOutBounce);
 
@@ -78,8 +80,11 @@ class TerranJumMoveAlgorithm : MonoBehaviour, IMovable
         }
         else
         {
-            Camera camera = Camera.main;
-            move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));
+            if(continiousJumps)
+            {
+                Camera camera = Camera.main;
+                move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));
+            }
         }
     }
 

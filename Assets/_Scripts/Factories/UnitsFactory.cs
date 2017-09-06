@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class UnitsFactory : MonoBehaviour {
-
+public class UnitsFactory : MonoBehaviour
+{
     [Serializable]
     public class TerranUnit
     {
         [HideInInspector]
         public String name;
         public TerranTypes type;
-        public GameObject gameobject;
+        public GameObject gameObject;
     }
 
     public enum TerranTypes
@@ -24,7 +23,7 @@ public class UnitsFactory : MonoBehaviour {
     }
 
     public Transform UnitsContainer;
-    public TerranUnit[] Terran;
+    public TerranUnit[] Terrans;
 
     private Dictionary<string, GameObject> _terranUnits = new Dictionary<string, GameObject>();
 
@@ -32,17 +31,24 @@ public class UnitsFactory : MonoBehaviour {
     {
         TerranUnit unit;
         String unitName;
-        for (int i = 0; i < Terran.Length; i++)
+        for (int i = 0; i < Terrans.Length; i++)
         {
-            unit = Terran[i];
-            unitName = unit.type.ToString();
-            _terranUnits.Add(unitName, unit.gameobject);
+            unit = Terrans[i];
+            if(unit != null && unit.gameObject != null)
+            {
+                unitName = unit.type.ToString();
+                _terranUnits.Add(unitName, unit.gameObject);
+            }
         }
     }
 
-    public MonoBehaviour createTerranUnit(Type unitype)
+    public bool isUnitRegistered(string type)
     {
-        string type = unitype.ToString();
+        return _terranUnits.ContainsKey(type);
+    }
+
+    public MonoBehaviour createTerranUnit(string type)
+    {
         GameObject result = (GameObject)Instantiate(_terranUnits[type]);
         result.transform.parent = UnitsContainer;
         return (MonoBehaviour)result.GetComponent(type);

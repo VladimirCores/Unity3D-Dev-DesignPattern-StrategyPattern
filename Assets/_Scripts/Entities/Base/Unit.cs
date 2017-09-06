@@ -1,10 +1,26 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System;
 
-public abstract class Unit : MonoBehaviour {
-    
+public abstract class Unit : MonoBehaviour
+{
+    [Serializable]
+    public class UnitParams
+    {
+        public MoveAlgorithms moveAlgorithm;
+    }
+
+    public UnitParams parameters;
     public string Name = "unit";
+
+    public enum MoveAlgorithms {
+        Null,
+        Aviation,
+        Infantry,
+        Jump,
+        Wiggle
+    };
 
     private IMovable _moveAlgorithm = new NullMoveAlgorithm();
 
@@ -35,12 +51,19 @@ public abstract class Unit : MonoBehaviour {
             _selected = value;
             setColor(value ? Color.white : _color);
             setZIndex(value ? -1 : 0);
+            if(_selected) Debug.Log("Selected: " + this.GetType().ToString());
         }
         get { return _selected; }
     }
 
     public void SetMoveAlgorithm(Type value)
     {
+        if (_moveAlgorithm != null)
+        {
+            if (value != _moveAlgorithm.GetType())
+                Destroy(gameObject.GetComponent(_moveAlgorithm.GetType()));
+            else return;
+        }
         _moveAlgorithm = (IMovable)this.gameObject.AddComponent(value);
     }
 
