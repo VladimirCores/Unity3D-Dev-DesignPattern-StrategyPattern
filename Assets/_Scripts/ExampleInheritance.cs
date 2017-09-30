@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ExampleInheritance : MonoBehaviour
 {
+	/*
 	void Start () {
 	    Car car = new Car();
         Bycicle bycicle = new Bycicle();
@@ -14,8 +15,9 @@ public class ExampleInheritance : MonoBehaviour
         bird.move();
         spaceship.move();
 	}
+	*/
 }
-
+/*
 public abstract class Movable
 {
     public Movable()
@@ -23,7 +25,7 @@ public abstract class Movable
     }
     public void move() { Debug.Log("I'm moving ..."); }
 }
-
+*/
 /*
  * Каждый отдельный класс-объект имеет свое собственное поведение
  * Часто это поведение (правило) будет повторятся у схожих объектов (или изменятся незначительно)
@@ -32,6 +34,7 @@ public abstract class Movable
  * Замена функционала или рефакторинг объекта (или одного из его "родителей") может быть длительным и энергозатратным процессом.
  */
 
+/*
 public class Car : Movable
 {
     public Car()
@@ -79,4 +82,5 @@ public class Truck : Car
     }
     public void move() { Debug.Log("I'm moving SLOW"); }
 }
+*/
 

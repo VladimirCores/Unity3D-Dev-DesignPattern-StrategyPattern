@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Valkyrie : Unit {
-	void Start () {
+public class Valkyrie : Unit 
+{
+	void Start () 
+	{
         Name = "Valkyrie";
-        parameters.moveAlgorithm = Unit.MoveAlgorithm.Null;
-        SetMoveAlgorithm(typeof(NullMoveAlgorithm));
-    }
+        SetMoveAlgorithm(MoveAlgorithm.Wiggle);
+	}
 
     //override public void move(Vector2 position)
     //{

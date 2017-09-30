@@ -4,12 +4,13 @@ using System;
 
 public class UnitController : MonoBehaviour {
 
-    public Unit unit;
+    public Unit selectedUnit;
     
     private Touch _touch;
     private Vector2 _position;    
 
-    void Update () {
+    void Update () 
+	{
         if (Input.touchCount > 0) {
             AnalizeTouchOnUnit();
         }
@@ -18,18 +19,18 @@ public class UnitController : MonoBehaviour {
             AnalizeMoveUnitToPosition();
         }
 
-        if(unit) 
+        if(selectedUnit) 
         {
             if(Input.GetKeyUp(KeyCode.Keypad1))
-            unit.SetSpeed(10f);
+            	selectedUnit.SetSpeed(10f);
             else if(Input.GetKeyUp(KeyCode.Keypad2))
-            unit.SetSpeed(20f);
+            	selectedUnit.SetSpeed(20f);
         }
 	}
 
     private void AnalizeMoveUnitToPosition()
     {
-        if (_position != Vector2.zero) unit.move(_position);
+        if (_position != Vector2.zero) selectedUnit.move(_position);
     }
 
     private void AnalizeTouchOnUnit()
@@ -50,11 +51,12 @@ public class UnitController : MonoBehaviour {
     {
         _position = Camera.main.ScreenToWorldPoint(position);
         Collider2D collider = Physics2D.OverlapPoint(_position);
+
         if (collider && collider.transform.GetComponent<Unit>())
         {
-            unit.isSelected = false;
-            unit = collider.transform.GetComponent<Unit>();
-            unit.isSelected = true;
+            selectedUnit.isSelected = false;
+            selectedUnit = collider.transform.GetComponent<Unit>();
+            selectedUnit.isSelected = true;
             _position = Vector3.zero;
         }
     }

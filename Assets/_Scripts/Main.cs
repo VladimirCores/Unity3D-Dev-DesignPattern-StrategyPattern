@@ -4,8 +4,8 @@ using System;
 
 public class Main : MonoBehaviour {
     
-    public UnitsFactory UnitsFactory;
-    public ObstaclesFactory ObstaclesFactory;
+    public UnitsFactory unitsFactory;
+    public ObstaclesFactory obstaclesFactory;
 
     // Use this for initialization
     void Start ()
@@ -19,12 +19,17 @@ public class Main : MonoBehaviour {
             UnitsFactory.TerranUnitTypes.Valkyrie
         };
 
-        foreach (UnitsFactory.TerranUnitTypes unitType in unitsToCreate)
+		// Create only registered unit
+		if(unitsFactory) foreach (UnitsFactory.TerranUnitTypes unitType in unitsToCreate)
         {
-            if (UnitsFactory.isUnitRegistered(unitType))
-                UnitsFactory.createTerranUnit(unitType);
+            if (unitsFactory.isUnitRegistered(unitType))
+                unitsFactory.createTerranUnit(unitType);
         }
-        
-        var obst = (CircleObstacle) ObstaclesFactory.createObstacle(typeof(CircleObstacle));
+		else Debug.LogError("> UNIT FACTORY -> DOES NOT SET");
+
+		// Create obstacle instance
+		if(obstaclesFactory) {
+			var obst = (CircleObstacle) obstaclesFactory.createObstacle(typeof(CircleObstacle));
+		} else Debug.LogError("> OBSTACLES FACTORY -> DOES NOT SET");
     }
 }

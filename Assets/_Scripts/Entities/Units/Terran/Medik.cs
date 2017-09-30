@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Medik : Unit {
-
+public class Medik : Unit 
+{
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
         Name = "Medik";
-        parameters.moveAlgorithm = Unit.MoveAlgorithm.Wiggle;
-        SetMoveAlgorithm(typeof(TerranWiggleMoveAlgorithm));
-    }
+        SetMoveAlgorithm(MoveAlgorithm.Null);
+	}
 }

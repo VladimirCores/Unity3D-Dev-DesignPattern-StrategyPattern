@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System;
@@ -10,16 +10,11 @@ public abstract class Unit : MonoBehaviour
         switch (input)
         {
             default:
-            case MoveAlgorithm.Null:
-                return typeof(NullMoveAlgorithm);
-            case Unit.MoveAlgorithm.Aviation:
-                return typeof(TerranAviationMoveAlgorithm);
-            case Unit.MoveAlgorithm.Jump:
-                return typeof(TerranJumpMoveAlgorithm);
-            case Unit.MoveAlgorithm.Infantry:
-                return typeof(TerranInfantryMoveAlgorithm);
-            case Unit.MoveAlgorithm.Wiggle:
-                return typeof(TerranWiggleMoveAlgorithm);
+            case MoveAlgorithm.Null: 			return typeof(NullMoveAlgorithm);
+            case Unit.MoveAlgorithm.Aviation: 	return typeof(TerranAviationMoveAlgorithm);
+            case Unit.MoveAlgorithm.Jump: 		return typeof(TerranJumpMoveAlgorithm);
+            case Unit.MoveAlgorithm.Infantry: 	return typeof(TerranInfantryMoveAlgorithm);
+            case Unit.MoveAlgorithm.Wiggle: 	return typeof(TerranWiggleMoveAlgorithm);
         }
     }
 
@@ -46,17 +41,17 @@ public abstract class Unit : MonoBehaviour
     private bool        _selected   = false;
     private Color       _color      = Color.black;
     private int         _zindex     = 0;
+	private MoveAlgorithm _moveAlgorithmEnum;
     private Material    _material;
 
     virtual public void move(Vector2 position)
     {
-        _moveAlgorithm.move(position);
+		if(_moveAlgorithm != null) _moveAlgorithm.move(position);
     }
 
     void Awake()
     {
-        SetMoveAlgorithm(getTypeForMoveAlgorithm(parameters.moveAlgorithm));
-        _material = this.GetComponent<Renderer>().material;
+		_material = this.GetComponent<Renderer>().material;
         Camera camera = Camera.main;
         this.transform.position = new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2);
     }
@@ -77,23 +72,65 @@ public abstract class Unit : MonoBehaviour
         get { return _selected; }
     }
 
-    public void SetMoveAlgorithm(Type value)
+	public MoveAlgorithm GetMoveAlgorithm() 
+	{
+		return _moveAlgorithmEnum;
+	}
+
+    public void SetMoveAlgorithm(MoveAlgorithm value)
     {
+		Debug.Log("> Unit -> SetMoveAlgorithm: _moveAlgorithm is null = " + (_moveAlgorithm == null));
+
+		Type newMoveAlgorithmType = getTypeForMoveAlgorithm(value);
+        
         if (_moveAlgorithm != null)
         {
-            if (value != _moveAlgorithm.GetType())
-                Destroy(gameObject.GetComponent(_moveAlgorithm.GetType()));
+			Type moveAlgorithmType = _moveAlgorithm.GetType();
+
+			bool IsNewSameAsCurrent = (value.ToString() == moveAlgorithmType.ToString());
+			Debug.Log("> Unit -> SetMoveAlgorithm: current move type = " + moveAlgorithmType.ToString());
+			Debug.Log("> Unit -> SetMoveAlgorithm: new move type = " + value.ToString());
+			Debug.Log("> Unit -> SetMoveAlgorithm: is equals to new = " + IsNewSameAsCurrent);
+
+			if (IsNewSameAsCurrent == false)
+			{
+				Component moveAlgorithmComponent = this.gameObject.GetComponent(moveAlgorithmType);
+				if(moveAlgorithmComponent) {
+					_moveAlgorithm = null;
+					DestroyImmediate(moveAlgorithmComponent, true);
+					moveAlgorithmComponent = null;
+				} 
+			}
             else return;
         }
-        _moveAlgorithm = (IMovable)this.gameObject.AddComponent(value);
+		else 
+		{
+			_moveAlgorithm = (IMovable)this.gameObject.GetComponent(newMoveAlgorithmType);
+			if(_moveAlgorithm != null) {
+				_moveAlgorithmEnum = value;
+				return;
+			} else {
+				foreach (int v in Enum.GetValues(typeof(MoveAlgorithm)))
+				{
+					_moveAlgorithmEnum = (MoveAlgorithm) v;
+					_moveAlgorithm = (IMovable)this.gameObject.GetComponent(getTypeForMoveAlgorithm(_moveAlgorithmEnum));
+					if(_moveAlgorithm != null) return;
+				}
+			}
+		}
+
+		Debug.Log("> Unit -> SetMoveAlgorithm: " + value);
+		_moveAlgorithmEnum = value;
+		_moveAlgorithm = (IMovable)this.gameObject.AddComponent(newMoveAlgorithmType);
     }
 
     public void SetSpeed(float value)
     {
-        _moveAlgorithm.changeSpeed(value);
+		if(_moveAlgorithm != null) _moveAlgorithm.changeSpeed(value);
     }
 
-    private void setColor(Color value) {
+    private void setColor(Color value) 
+	{
         if (_material) {
             if (_color == Color.black)
             {

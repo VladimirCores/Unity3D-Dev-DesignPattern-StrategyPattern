@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 
+/**
+* Special class where we assiciate unit type with prefab (graphic)	
+*/
 public class UnitsFactory : MonoBehaviour
 {
     [Serializable]
