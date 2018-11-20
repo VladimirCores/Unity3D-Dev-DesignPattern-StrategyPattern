@@ -11,7 +11,7 @@ public class ObstaclesFactory : MonoBehaviour {
         [HideInInspector]
         public String name;
         public ObstaclesTypes type;
-        public GameObject gameobject;
+        public GameObject gameObject;
     }
 
     public enum ObstaclesTypes
@@ -22,25 +22,32 @@ public class ObstaclesFactory : MonoBehaviour {
     public Transform ObstaclesContainer;
     public Obstacle[] Obstacles;
 
-    private Dictionary<string, GameObject> _obstacles = new Dictionary<string, GameObject>();
+	private Dictionary<ObstaclesTypes, GameObject>
+		_registeredObstacles = new Dictionary<ObstaclesTypes, GameObject>();
 
     void Awake()
     {
         Obstacle obst;
-        String unitName;
+		ObstaclesTypes obstType;
         for (int i = 0; i < Obstacles.Length; i++)
         {
             obst = Obstacles[i];
-            unitName = obst.type.ToString();
-            _obstacles.Add(unitName, obst.gameobject);
+			if (obst != null && obst.gameObject != null) {
+				obstType = obst.type;
+				_registeredObstacles.Add(obstType, obst.gameObject);
+			}
         }
     }
 
-    public MonoBehaviour createObstacle(Type obstType)
+	public bool isObstacleRegistered(ObstaclesTypes type)
+	{
+		return _registeredObstacles.ContainsKey(type);
+	}
+
+	public MonoBehaviour createObstacle(ObstaclesTypes type)
     {
-        string type = obstType.ToString();
-        GameObject result = (GameObject)Instantiate(_obstacles[type]);
-        result.transform.parent = ObstaclesContainer;
-        return (MonoBehaviour)result.GetComponent(type);
+		GameObject result = (GameObject)Instantiate(_registeredObstacles[type]);
+		result.transform.parent = ObstaclesContainer;
+		return (MonoBehaviour)result.GetComponent(type.ToString());
     }
 }

@@ -27,6 +27,7 @@ public abstract class Unit : MonoBehaviour
 
     public UnitParams parameters;
     public string Name = "unit";
+	public GameObject signature;
 
     public enum MoveAlgorithm {
         Null,
@@ -51,10 +52,16 @@ public abstract class Unit : MonoBehaviour
 
     void Awake()
     {
+		if (signature != null) {
+			GameObject sign = (GameObject) Instantiate (signature);
+			sign.transform.parent = gameObject.transform;
+			TextMesh text = GetComponentInChildren<TextMesh>();
+			text.text = Name.Substring (0, 2);
+		}
 		_material = this.GetComponent<Renderer>().material;
         Camera camera = Camera.main;
         this.transform.position = new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2);
-    }
+	}
 
     void OnCollisionEnter(Collision collision)
     {

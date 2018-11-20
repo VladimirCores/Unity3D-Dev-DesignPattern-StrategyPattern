@@ -28,7 +28,8 @@ public class UnitsFactory : MonoBehaviour
     public Transform UnitsContainer;
     public TerranUnit[] Terrans;
 
-    private Dictionary<TerranUnitTypes, GameObject> _terranUnits = new Dictionary<TerranUnitTypes, GameObject>();
+	private Dictionary<TerranUnitTypes, GameObject> 
+		_registeredTerranUnits = new Dictionary<TerranUnitTypes, GameObject>();
 
     void Awake()
     {
@@ -40,19 +41,19 @@ public class UnitsFactory : MonoBehaviour
             if(unit != null && unit.gameObject != null)
             {
                 unitType = unit.type;
-                _terranUnits.Add(unitType, unit.gameObject);
+                _registeredTerranUnits.Add(unitType, unit.gameObject);
             }
         }
     }
 
     public bool isUnitRegistered(TerranUnitTypes type)
     {
-        return _terranUnits.ContainsKey(type);
+        return _registeredTerranUnits.ContainsKey(type);
     }
 
     public MonoBehaviour createTerranUnit(TerranUnitTypes type)
     {
-        GameObject result = (GameObject)Instantiate(_terranUnits[type]);
+        GameObject result = (GameObject)Instantiate(_registeredTerranUnits[type]);
         result.transform.parent = UnitsContainer;
         return (MonoBehaviour)result.GetComponent(type.ToString());
     }
