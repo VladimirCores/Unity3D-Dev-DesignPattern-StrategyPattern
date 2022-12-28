@@ -46,7 +46,7 @@ public class TerranJumpMoveAlgorithm : MonoBehaviour, IMovable
                 transform.position = _destinationPosition;
             }
         }
-        else if(isTweenOutFinished && !isTweenInFinished)
+        else if (isTweenOutFinished && !isTweenInFinished)
         {
             isTweenInFinished = _tweenerJumpIn.UpdateTime(Time.fixedDeltaTime, ref _currentTweenValue);
             transform.localScale = new Vector3(_currentTweenValue, _currentTweenValue, _currentTweenValue);

@@ -20,9 +20,9 @@ public class Main : MonoBehaviour {
 		});
 
 		// Create obstacle instances
-		InstantiateObstacles (new ArrayList () {
-			ObstaclesFactory.ObstaclesTypes.CircleObstacle
-		});
+		InstantiateObstacles (new ArrayList() {
+				ObstaclesFactory.ObstaclesTypes.CircleObstacle
+			});
     }
 
 	private void InstantiateUnits(ArrayList unitsToCreate)
@@ -30,8 +30,8 @@ public class Main : MonoBehaviour {
 		// Create only registered unit
 		if (unitsFactory) {
 			foreach (UnitsFactory.TerranUnitTypes unitType in unitsToCreate)
-				if (unitsFactory.isUnitRegistered (unitType))
-					unitsFactory.createTerranUnit (unitType);
+				if (unitsFactory.isUnitRegistered(unitType))
+					unitsFactory.createTerranUnit(unitType);
 		}	
 		else Debug.LogError("> UNIT FACTORY -> WAS NOT SET");
 	}
@@ -41,8 +41,8 @@ public class Main : MonoBehaviour {
 		// Create only registered unit
 		if(obstaclesFactory) {
 			foreach (ObstaclesFactory.ObstaclesTypes obstacleType in obstaclesToCreate)
-				if (obstaclesFactory.isObstacleRegistered (obstacleType))
-					obstaclesFactory.createObstacle (obstacleType);
+				if (obstaclesFactory.isObstacleRegistered(obstacleType))
+					obstaclesFactory.createObstacle(obstacleType);
 		}
 		else Debug.LogError("> OBSTACLES FACTORY -> WAS NOT SET");
 	}

@@ -6,7 +6,7 @@ public class Medik : Unit
 	// Use this for initialization
 	void Start () 
 	{
-        Name = "Medik";
-        SetMoveAlgorithm(MoveAlgorithm.Null);
+			Name = "Medik";
+			SetMoveAlgorithm(MoveAlgorithm.Null);
 	}
 }

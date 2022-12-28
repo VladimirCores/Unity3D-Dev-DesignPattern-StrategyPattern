@@ -42,12 +42,12 @@ public class TerranInfantryMoveAlgorithm : MonoBehaviour, IMovable
 
     void FixedUpdate()
     {
-        if(!isTweenFinished)
+        if (!isTweenFinished)
         {
             isTweenFinished = _tweener.UpdateTime(Time.fixedDeltaTime, ref _currentTweenValue);
             _positionTarget = Vector2.LerpUnclamped(_positionCurrent, _moveTo, _currentTweenValue);
             transform.position = _positionTarget;
-            if(isTweenFinished)
+            if (isTweenFinished)
             {
                 //Camera camera = Camera.main;
                 //move(new Vector2(UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2, UnityEngine.Random.Range(-camera.orthographicSize, camera.orthographicSize - 2) + 2));

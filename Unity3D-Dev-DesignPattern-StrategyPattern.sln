@@ -1,29 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity3D-Dev-DesignPattern-StrategyPattern", "Assembly-CSharp.csproj", "{99A8E3CF-ED1F-3853-56CB-34A98FAE418D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{cfe3a899-1fed-5338-56cb-34a98fae418d}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity3D-Dev-DesignPattern-StrategyPattern", "Assembly-CSharp-Editor.csproj", "{0445E342-16F9-C686-D3AB-BB4C81D41DBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{42e34504-f916-86c6-d3ab-bb4c81d41dbf}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{99A8E3CF-ED1F-3853-56CB-34A98FAE418D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99A8E3CF-ED1F-3853-56CB-34A98FAE418D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99A8E3CF-ED1F-3853-56CB-34A98FAE418D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99A8E3CF-ED1F-3853-56CB-34A98FAE418D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0445E342-16F9-C686-D3AB-BB4C81D41DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0445E342-16F9-C686-D3AB-BB4C81D41DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0445E342-16F9-C686-D3AB-BB4C81D41DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0445E342-16F9-C686-D3AB-BB4C81D41DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{cfe3a899-1fed-5338-56cb-34a98fae418d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{cfe3a899-1fed-5338-56cb-34a98fae418d}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42e34504-f916-86c6-d3ab-bb4c81d41dbf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42e34504-f916-86c6-d3ab-bb4c81d41dbf}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

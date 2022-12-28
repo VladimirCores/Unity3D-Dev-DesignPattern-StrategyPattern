@@ -5,7 +5,7 @@ public class Battlecruiser : Unit
 {
 	void Start () 
 	{
-        Name = "Battlecruiser";
-		SetMoveAlgorithm(Unit.MoveAlgorithm.Aviation);
-    }
+			Name = "Battlecruiser";
+			SetMoveAlgorithm(Unit.MoveAlgorithm.Aviation);
+	}
 }

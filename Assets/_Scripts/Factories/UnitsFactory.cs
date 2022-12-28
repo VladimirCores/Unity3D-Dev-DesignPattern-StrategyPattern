@@ -38,7 +38,7 @@ public class UnitsFactory : MonoBehaviour
         for (int i = 0; i < Terrans.Length; i++)
         {
             unit = Terrans[i];
-            if(unit != null && unit.gameObject != null)
+            if (unit != null && unit.gameObject != null)
             {
                 unitType = unit.type;
                 _registeredTerranUnits.Add(unitType, unit.gameObject);
